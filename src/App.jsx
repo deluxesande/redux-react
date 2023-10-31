@@ -1,26 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
-import { actions } from "./store";
+import { useSelector } from "react-redux";
 import "./App.css";
+import Auth from "./components/Auth";
+import Layout from "./components/Layout";
 
 function App() {
-    const counter = useSelector((state) => state.counter);
-    const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedin);
+    console.log(isLoggedIn);
 
-    const add = () => {
-        dispatch(actions.add());
-    };
-
-    const sub = () => {
-        dispatch(actions.sub());
-    };
+    const itemList = useSelector((state) => state.cart.itemList);
+    console.log(itemList);
 
     return (
         <div>
-            <h1>Counter app</h1>
-            <span>{counter}</span>
-
-            <button onClick={add}>+</button>
-            <button onClick={sub}>-</button>
+            {!isLoggedIn && <Auth />}
+            {isLoggedIn && <Layout />}
         </div>
     );
 }
