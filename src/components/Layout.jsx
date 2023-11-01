@@ -3,6 +3,7 @@ import Card from "./Card";
 import CartList from "./CartList";
 import { CartActions } from "../store/CartSlice";
 import { AuthActions } from "../store/AuthSlice";
+import { useGetAllItemsQuery } from "../store/ApiSlice";
 
 const Layout = () => {
     const items = [
@@ -75,6 +76,9 @@ const Layout = () => {
     const handleLogout = () => {
         dispatch(AuthActions.logout());
     };
+
+    const { data } = useGetAllItemsQuery();
+    console.log(data);
 
     return (
         <>
