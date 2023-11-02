@@ -12,7 +12,7 @@ const store = configureStore({
         cart: CartSlice.reducer,
     },
 
-    // middleware for the apislice
+    // middleware for the api slice
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(itemsApi.middleware),
 });

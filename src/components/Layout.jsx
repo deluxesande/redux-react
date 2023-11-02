@@ -3,61 +3,61 @@ import Card from "./Card";
 import CartList from "./CartList";
 import { CartActions } from "../store/CartSlice";
 import { AuthActions } from "../store/AuthSlice";
-import { useGetAllItemsQuery } from "../store/ApiSlice";
+import { useGetAllItemsQuery, useGetItemQuery } from "../store/ApiSlice";
 
 const Layout = () => {
-    const items = [
-        {
-            id: "1",
-            name: "item1",
-            price: 10,
-        },
-        {
-            id: "2",
-            name: "item2",
-            price: 15,
-        },
-        {
-            id: "3",
-            name: "item3",
-            price: 20,
-        },
-        {
-            id: "4",
-            name: "item4",
-            price: 25,
-        },
-        {
-            id: "5",
-            name: "item5",
-            price: 30,
-        },
-        {
-            id: "6",
-            name: "item6",
-            price: 35,
-        },
-        {
-            id: "7",
-            name: "item7",
-            price: 40,
-        },
-        {
-            id: "8",
-            name: "item8",
-            price: 45,
-        },
-        {
-            id: "9",
-            name: "item9",
-            price: 50,
-        },
-        {
-            id: "10",
-            name: "item10",
-            price: 55,
-        },
-    ];
+    // const items = [
+    //     {
+    //         id: "1",
+    //         name: "item1",
+    //         price: 10,
+    //     },
+    //     {
+    //         id: "2",
+    //         name: "item2",
+    //         price: 15,
+    //     },
+    //     {
+    //         id: "3",
+    //         name: "item3",
+    //         price: 20,
+    //     },
+    //     {
+    //         id: "4",
+    //         name: "item4",
+    //         price: 25,
+    //     },
+    //     {
+    //         id: "5",
+    //         name: "item5",
+    //         price: 30,
+    //     },
+    //     {
+    //         id: "6",
+    //         name: "item6",
+    //         price: 35,
+    //     },
+    //     {
+    //         id: "7",
+    //         name: "item7",
+    //         price: 40,
+    //     },
+    //     {
+    //         id: "8",
+    //         name: "item8",
+    //         price: 45,
+    //     },
+    //     {
+    //         id: "9",
+    //         name: "item9",
+    //         price: 50,
+    //     },
+    //     {
+    //         id: "10",
+    //         name: "item10",
+    //         price: 55,
+    //     },
+    // ];
 
     const totalQuantity = useSelector((state) => state.cart.totalQuantity);
     const showCart = useSelector((state) => state.cart.showCart);
@@ -77,8 +77,14 @@ const Layout = () => {
         dispatch(AuthActions.logout());
     };
 
-    const { data } = useGetAllItemsQuery();
-    console.log(data);
+    const { data, isSuccess } = useGetAllItemsQuery();
+    // console.log(data?.products);
+
+    const items = isSuccess ? [...data.products] : null;
+    // console.log(items);
+
+    const { data: product } = useGetItemQuery(2);
+    console.log(product);
 
     return (
         <>
@@ -92,17 +98,19 @@ const Layout = () => {
                 </h2>
                 <button onClick={handleLogout}>Log out</button>
             </nav>
-            <div
-                style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: 50,
-                }}
-            >
-                {items.map((item, index) => (
-                    <Card key={index} item={item} />
-                ))}
-            </div>
+            {isSuccess && (
+                <div
+                    style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: 50,
+                    }}
+                >
+                    {items.map((item, index) => (
+                        <Card key={index} item={item} />
+                    ))}
+                </div>
+            )}
             <hr></hr>
             {showCart && <CartList />}
 

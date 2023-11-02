@@ -10,7 +10,7 @@ const CartItem = ({ item }) => {
         dispatch(
             CartActions.addToCart({
                 id: item.id,
-                name: item.name,
+                title: item.title,
                 price: item.price,
             })
         );
@@ -21,7 +21,7 @@ const CartItem = ({ item }) => {
 
     return (
         <div>
-            <h2>{item.name}</h2>
+            <h2>{item.title}</h2>
             <p>{item.quantity}</p>
             <p>{item.totalPrice}</p>
             <button onClick={handleAdd}>+</button>

@@ -8,7 +8,7 @@ const Card = ({ item }) => {
         dispatch(
             CartActions.addToCart({
                 id: item.id,
-                name: item.name,
+                title: item.title,
                 price: item.price,
             })
         );
@@ -16,7 +16,7 @@ const Card = ({ item }) => {
     return (
         <div>
             <img src="src/assets/react.svg" />
-            <h2>{item.name}</h2>
+            <h2>{item.title}</h2>
             <p>${item.price}</p>
             <button onClick={handleAdd}>Add to Cart</button>
         </div>

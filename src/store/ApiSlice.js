@@ -2,17 +2,17 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const itemsApi = createApi({
     reducerPath: "itemsApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "https://todo-mern-api.vercel.app" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "https://dummyjson.com" }),
     endpoints: (builder) => ({
         // return hooks
         // query used for getting data
         getAllItems: builder.query({
-            query: () => "api/v1/tasks/",
+            query: () => "products/",
         }),
         getItem: builder.query({
-            query: (product) => `products/search?q=${product}`,
+            query: (product) => `products/${product}`,
         }),
     }),
 });
 
-export const { useGetAllItemsQuery, useGetITemsQuery } = itemsApi;
+export const { useGetAllItemsQuery, useGetItemQuery } = itemsApi;
