@@ -12,7 +12,6 @@ import { useEffect } from "react";
 
 const Layout = () => {
     const totalQuantity = useSelector((state) => state.cart.totalQuantity);
-    // const showCart = useSelector((state) => state.cart.showCart);
     const dispatch = useDispatch();
 
     const handleShow = () => {
@@ -24,10 +23,9 @@ const Layout = () => {
     };
 
     const { data, isSuccess, isFetching } = useGetAllItemsQuery();
-    // console.log(data?.products);
 
     const items = isSuccess ? [...data.products] : null;
-    // console.log(items);
+
     const item = {
         id: 2,
         price: 898,
