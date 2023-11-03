@@ -5,10 +5,10 @@ import Layout from "./components/Layout";
 
 function App() {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedin);
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
 
-    const itemList = useSelector((state) => state.cart.itemList);
-    console.log(itemList);
+    // const itemList = useSelector((state) => state.cart.itemList);
+    // console.log(itemList);
 
     return (
         <div>

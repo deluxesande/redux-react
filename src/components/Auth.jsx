@@ -11,11 +11,37 @@ const Auth = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Enter Username" />
-            <input type="email" placeholder="Enter Email" />
-            <button type="submit">Log in</button>
-        </form>
+        <div
+            className="container d-flex justify-content-center align-items-center"
+            style={{ height: "100vh" }}
+        >
+            <form
+                onSubmit={handleSubmit}
+                style={{
+                    padding: "20px",
+                    backgroundColor: "#f4f4f4",
+                    borderRadius: "5px",
+                }}
+            >
+                <input
+                    className="form-control mb-3"
+                    type="text"
+                    placeholder="Enter Username"
+                />
+                <input
+                    className="form-control mb-3"
+                    type="email"
+                    placeholder="Enter Email"
+                />
+                <button
+                    style={{ width: "100%" }}
+                    className="btn btn-primary"
+                    type="submit"
+                >
+                    Log in
+                </button>
+            </form>
+        </div>
     );
 };
 
