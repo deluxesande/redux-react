@@ -7,25 +7,26 @@ const CartItem = ({ item }) => {
     const dispatch = useDispatch();
 
     const handleAdd = () => {
-        dispatch(
-            CartActions.addToCart({
-                id: item.id,
-                title: item.title,
-                price: item.price,
-            })
-        );
+        dispatch(CartActions.addToCart({ item }));
     };
+
     const handleSub = () => {
         dispatch(CartActions.removeFromCart(item.id));
     };
 
     return (
-        <div>
-            <h2>{item.title}</h2>
+        <div className="d-flex flex-wrap justify-content-between">
+            <h4>{item.title}</h4>
             <p>{item.quantity}</p>
             <p>{item.totalPrice}</p>
-            <button onClick={handleAdd}>+</button>
-            <button onClick={handleSub}>-</button>
+            <div className="d-flex gap-2">
+                <button className="btn btn-primary" onClick={handleAdd}>
+                    +
+                </button>
+                <button className="btn btn-secondary" onClick={handleSub}>
+                    -
+                </button>
+            </div>
         </div>
     );
 };
